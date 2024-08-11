@@ -1,14 +1,15 @@
-import os
 import json
+import os
 
 from break_notif.type import Notification
-
 
 HOME_PATH = os.environ["HOME"]
 DF_PATH = f"{HOME_PATH}/Documents/notifs.json"  # data file path
 
 create_empty_file = lambda filename: open(filename, "w").close()
-create_missing_datafile = lambda: create_empty_file(DF_PATH) if not os.path.isfile(DF_PATH) else 0
+create_missing_datafile = (
+    lambda: create_empty_file(DF_PATH) if not os.path.isfile(DF_PATH) else 0
+)
 
 
 def get_notifs() -> list[Notification]:
@@ -21,8 +22,9 @@ def get_notifs() -> list[Notification]:
 
     for heading, other_data in notifs_data.items():
         body = other_data.get("body")
-        icon = other_data.get("icon")
         timer = other_data.get("timer")
+        icon = other_data.get("icon")
+
         notif = Notification(heading, body, timer, icon)
         notifs.append(notif)
     return notifs
@@ -30,7 +32,7 @@ def get_notifs() -> list[Notification]:
 
 def save_notif(notif: Notification) -> None:
     with open(DF_PATH) as f:
-        notifs_data = f.read()
+        notifs_data = json.load(f)
     notifs_data[notif.heading] = {"body": notif.body, "timer": notif.timer}
     with open(DF_PATH, "w") as f:
         notifs_data = json.dumps(notifs_data, indent=4)
