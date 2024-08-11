@@ -9,7 +9,7 @@ from break_notif.utils import get_notifs, min_to_sec, save_notif
 
 
 async def start_notif(notif: Notification) -> None:
-    mins = min_to_sec(notif.timer)
+    mins: int = min_to_sec(notif.timer)
     while True:
         await asyncio.sleep(mins)
         Notify(notif.heading, notif.body).send()
@@ -17,7 +17,7 @@ async def start_notif(notif: Notification) -> None:
 
 async def main() -> None:
     if len(sys.argv) == 1:
-        notifs = get_notifs()
+        notifs: list[Notifications] = get_notifs()
         if not notifs:
             return
         async with asyncio.TaskGroup() as tg:
@@ -29,7 +29,7 @@ async def main() -> None:
         "-c",
         "--create",
         action="store_true",
-        help="Create a notification (data). Note that options e, b, t and i have no effect without this option.",
+        help="Create a notification (data). Options e, b, t and i have no effect without this option.",
     )
     parser.add_argument("-e", "--heading", type=str, help="Heading of notification.")
     parser.add_argument("-b", "--body", type=str, help="Body of notification.")
@@ -51,6 +51,7 @@ async def main() -> None:
         timer = args.timer
         icon = args.icon
 
+        # check presence of mandatory args
         margs_present = all((heading, body, timer))
 
         if margs_present:
@@ -58,7 +59,8 @@ async def main() -> None:
             save_notif(notif)
         else:
             print(
-                "bnotify: create argument requires heading, body and timer arguments to be specified. Icon argument is optional"
+                "bnotify: create argument requires heading, body and timer arguments to be specified.\n"
+                "Icon argument is optional"
             )
 
 
