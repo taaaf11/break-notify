@@ -1,7 +1,6 @@
 import asyncio
 import time
 
-#  import notify
 from notifypy import Notify
 
 from break_notif.utils import min_to_sec
@@ -10,19 +9,18 @@ from break_notif.utils import min_to_sec
 async def water_notif() -> None:
     summary = "Drink water."
     message = "Drink half a glass of water."
+    minutes = 40
     while True:
-        minutes = 40
-        await asyncio.sleep(5)
+        await asyncio.sleep(min_to_sec(minutes))
         Notify(summary, message).send()
 
 
 async def eye_20_rule() -> None:
     summary = "Eye care break"
     message = "Focus your eyes something 20 feet away for 20 minutes."
+    minutes = 20
     while True:
-        minutes = 20
-        #  await asyncio.sleep(min_to_sec(minutes))
-        await asyncio.sleep(8)
+        await asyncio.sleep(min_to_sec(minutes))
         Notify(summary, message).send()
 
 
