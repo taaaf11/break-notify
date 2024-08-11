@@ -11,8 +11,15 @@ from break_notif.utils import get_notifs, min_to_sec, save_notif
 async def start_notif(notif: Notification) -> None:
     mins: int = min_to_sec(notif.timer)
     while True:
+        notify = Notify()
+        notify.title = notif.heading
+        notify.message = notif.body
+        if notif.icon:
+            notify.icon = notif.icon
+        if notif.sound:
+            notify.audio = notif.sound
+        notify.send()
         await asyncio.sleep(mins)
-        Notify(notif.heading, notif.body).send()
 
 
 async def main() -> None:
@@ -31,36 +38,40 @@ async def main() -> None:
         action="store_true",
         help="Create a notification (data). Options e, b, t and i have no effect without this option.",
     )
-    parser.add_argument("-e", "--heading", type=str, help="Heading of notification.")
-    parser.add_argument("-b", "--body", type=str, help="Body of notification.")
+    parser.add_argument("-e", type=str, help="Heading of notification.")
+    parser.add_argument("-b", type=str, help="Body of notification.")
     parser.add_argument(
         "-t",
-        "--timer",
         type=int,
         help="Time (in minutes) after which the notification should be triggered.",
     )
     parser.add_argument(
-        "-i", "--icon", type=str, help="Path to file containing icon for notification."
+        "-i", type=str, help="Path to file containing icon for notification."
+    )
+
+    parser.add_argument(
+        "-s", type=str, help="Path to sound file to play when notification arrives."
     )
 
     args = parser.parse_args()
 
     if args.create:
-        heading = args.heading
-        body = args.body
-        timer = args.timer
-        icon = args.icon
+        heading = args.e
+        body = args.b
+        timer = args.t
+        icon = args.i
+        sound = args.s
 
         # check presence of mandatory args
         margs_present = all((heading, body, timer))
 
         if margs_present:
-            notif = Notification(heading, body, timer, icon)
+            notif = Notification(heading, body, timer, icon, sound)
             save_notif(notif)
         else:
             print(
-                "bnotify: create argument requires heading, body and timer arguments to be specified.\n"
-                "Icon argument is optional"
+                "bnotify: create argument requires heading, body and timer (e,b and t) arguments to be specified.\n"
+                "Icon and sound (i and a) argument is optional"
             )
 
 
