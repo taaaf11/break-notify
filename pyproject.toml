@@ -6,7 +6,7 @@ authors = [
 	{name = "Muhammad Altaaf", email = "taafuuu@gmail.com"}
 ]
 dependencies = [
-  "notify-send"
+  "notify_py"
 ]
 
 
