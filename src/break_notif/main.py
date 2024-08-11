@@ -8,16 +8,16 @@ from break_notif.type import Notification
 from break_notif.utils import get_notifs, min_to_sec, save_notif
 
 
-async def start_notif(notif: Notification) -> None:
+async def start_notif(notification: Notification) -> None:
     mins: int = min_to_sec(notif.timer)
+    notify = Notify()
+    notify.title = notification.heading
+    notify.message = notification.body
+    if notification.icon:
+        notify.icon = notif.icon
+    if notif.sound:
+        notify.audio = notification.sound
     while True:
-        notify = Notify()
-        notify.title = notif.heading
-        notify.message = notif.body
-        if notif.icon:
-            notify.icon = notif.icon
-        if notif.sound:
-            notify.audio = notif.sound
         notify.send()
         await asyncio.sleep(mins)
 
