@@ -11,4 +11,4 @@ dependencies = [
 
 
 [project.scripts]
-bnotif = "break_notif.main:main"
+bnotify = "break_notif.main:runner"
