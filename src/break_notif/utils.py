@@ -4,15 +4,21 @@ import os
 from break_notif.type import Notification
 
 HOME_PATH = os.environ["HOME"]
-DF_PATH = f"{HOME_PATH}/Documents/notifs.json"  # data file path
+DF_DIR = f"{HOME_PATH}/Documents"
+DF_PATH = f"{DF_DIR}/notifs.json"  # data file path
 
 
 def _create_empty_file(filename: str) -> None:
     open(filename, "w").close()
 
 
-def _create_missing_datafile() -> None:
+def _create_missing_paths() -> None:
+    """Create missing files and directories"""
+    if not os.path.isdir(DF_DIR):
+        print(f"Creating {DF_DIR} directory for saving notifications data file...")
+        os.mkdir(DF_DIR)
     if not os.path.isfile(DF_PATH):
+        print(f"Creating {DF_PATH} file for saving notifications data...")
         _create_empty_file(DF_PATH)
 
 
