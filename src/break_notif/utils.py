@@ -44,6 +44,7 @@ def get_notifs() -> list[Notification]:
 
 
 def save_notif(notif: Notification) -> None:
+    _create_missing_paths()
     with open(DF_PATH) as f:
         notifs_data = json.load(f)
     notifs_data[notif.heading] = {
