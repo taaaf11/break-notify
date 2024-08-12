@@ -9,13 +9,13 @@ from break_notif.utils import get_notifs, min_to_sec, save_notif
 
 
 async def start_notif(notification: Notification) -> None:
-    mins: int = min_to_sec(notif.timer)
+    mins: int = min_to_sec(notification.timer)
     notify = Notify()
     notify.title = notification.heading
     notify.message = notification.body
     if notification.icon:
-        notify.icon = notif.icon
-    if notif.sound:
+        notify.icon = notification.icon
+    if notification.sound:
         notify.audio = notification.sound
     while True:
         notify.send()
@@ -24,7 +24,7 @@ async def start_notif(notification: Notification) -> None:
 
 async def main() -> None:
     if len(sys.argv) == 1:
-        notifs: list[Notifications] = get_notifs()
+        notifs: list[Notification] = get_notifs()
         if not notifs:
             return
         async with asyncio.TaskGroup() as tg:
