@@ -23,7 +23,7 @@ def _create_missing_paths() -> None:
 
 
 def get_notifs() -> list[Notification]:
-    _create_missing_datafile()
+    _create_missing_paths()
     notifs = []
     with open(DF_PATH) as f:
         notifs_data = json.load(f)
