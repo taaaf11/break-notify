@@ -18,8 +18,8 @@ async def start_notif(notification: Notification) -> None:
     if notification.sound:
         notify.audio = notification.sound
     while True:
-        notify.send()
         await asyncio.sleep(mins)
+        notify.send()
 
 
 async def main() -> None:
