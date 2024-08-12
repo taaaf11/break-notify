@@ -3,10 +3,10 @@ name = "break-notif"
 description = "A tool to notify for breaks."
 version = "0.1.0"
 authors = [
-	{name = "Muhammad Altaaf", email = "taafuuu@gmail.com"}
+    {name = "Muhammad Altaaf", email = "taafuuu@gmail.com"}
 ]
 dependencies = [
-  "notify_py"
+    "notify_py"
 ]
 
 
