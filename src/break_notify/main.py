@@ -4,8 +4,8 @@ from argparse import ArgumentParser
 
 from notifypy import Notify
 
-from break_notif.type import Notification
-from break_notif.utils import get_notifs, min_to_sec, save_notif
+from break_notify.type import Notification
+from break_notify.utils import get_notifs, min_to_sec, save_notif
 
 
 async def start_notif(notification: Notification) -> None:
