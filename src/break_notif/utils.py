@@ -1,9 +1,11 @@
 import json
 import os
+from pathlib import Path
 
 from break_notif.type import Notification
 
-HOME_PATH = os.environ["HOME"]
+
+HOME_PATH = str(Path.home())
 DF_DIR = f"{HOME_PATH}/Documents"
 DF_PATH = f"{DF_DIR}/notifs.json"  # data file path
 
