@@ -32,11 +32,18 @@ async def main() -> None:
                 tg.create_task(start_notif(notif))
 
     parser = ArgumentParser(prog="renotify", description="A lightweight repeated notifier.")
-    parser.add_argument(
+    cl_group = parser.add_mutually_exclusive_group()
+    cl_group.add_argument(
         "-c",
         "--create",
         action="store_true",
         help="Create a notification (data). Options e, b, t and i have no effect without this option.",
+    )
+    cl_group.add_argument(
+        "-l",
+        "--list",
+        action="store_true",
+        help="Show saved notifications data in a list.",
     )
     parser.add_argument("-e", type=str, help="Heading of notification.")
     parser.add_argument("-b", type=str, help="Body of notification.")
@@ -66,13 +73,19 @@ async def main() -> None:
         margs_present = all((heading, body, timer))
 
         if margs_present:
-            notif = Notification(heading, body, timer, icon, sound)
-            save_notif(notif)
+            notification = Notification(heading, body, timer, icon, sound)
+            save_notif(notification)
         else:
             print(
                 "renotify: create argument requires heading, body and timer (e,b and t) arguments to be specified.\n"
                 "Icon and sound (i and a) argument is optional"
             )
+
+    if args.list:
+        notifications: list[Notification] = get_notifs()
+        for notif_c in range(len(notifications)):
+            notification = notifications[notif_c]
+            print(f"{notif_c + 1}. {notification.heading}: {notification.body} ({notification.timer} minutes)")
 
 
 def runner() -> None:
