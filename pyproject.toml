@@ -2,7 +2,7 @@
 name = "renotify"
 description = "A tool to notify for breaks."
 readme = "README.md"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
     {name = "Muhammad Altaaf", email = "taafuuu@gmail.com"}
 ]

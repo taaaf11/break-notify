@@ -31,7 +31,7 @@ async def main() -> None:
             for notif in notifs:
                 tg.create_task(start_notif(notif))
 
-    parser = ArgumentParser(prog="renotify", description="A lightweight break notifier.")
+    parser = ArgumentParser(prog="renotify", description="A lightweight repeated notifier.")
     parser.add_argument(
         "-c",
         "--create",
@@ -70,7 +70,7 @@ async def main() -> None:
             save_notif(notif)
         else:
             print(
-                "bnotify: create argument requires heading, body and timer (e,b and t) arguments to be specified.\n"
+                "renotify: create argument requires heading, body and timer (e,b and t) arguments to be specified.\n"
                 "Icon and sound (i and a) argument is optional"
             )
 
