@@ -1,5 +1,5 @@
 # renotify
-A tool to notify for taking a break. This started as a project for notifying for breaks. Now it has become a repeating notifier. (More in history.)
+A tool for repeatedly creating a notification. This started as a project for notifying for breaks. Now it has become a repeating notifier. (More in history.)
 
 
 ## Installation
