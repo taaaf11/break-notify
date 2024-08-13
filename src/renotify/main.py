@@ -4,8 +4,8 @@ from argparse import ArgumentParser
 
 from notifypy import Notify
 
-from break_notify.type import Notification
-from break_notify.utils import get_notifs, min_to_sec, save_notif
+from renotify.type import Notification
+from renotify.utils import get_notifs, min_to_sec, save_notif
 
 
 async def start_notif(notification: Notification) -> None:
@@ -31,7 +31,7 @@ async def main() -> None:
             for notif in notifs:
                 tg.create_task(start_notif(notif))
 
-    parser = ArgumentParser(prog="bnotify", description="A lightweight break notifier.")
+    parser = ArgumentParser(prog="renotify", description="A lightweight break notifier.")
     parser.add_argument(
         "-c",
         "--create",

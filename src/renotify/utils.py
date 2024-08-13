@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 
-from break_notify.type import Notification
+from renotify.type import Notification
 
 
 HOME_PATH = str(Path.home())

@@ -1,4 +1,4 @@
-# break-notify
+# renotify
 A tool to notify for taking a break. This started as a project for notifying for breaks. Now it has become a repeating notifier. (More in history.)
 
 
@@ -11,19 +11,19 @@ A tool to notify for taking a break. This started as a project for notifying for
 ## Usage
 - Create a notification:
 ```bash
-bnotify -c -e notification-heading -b notification-body -t 1
+renotify -c -e notification-heading -b notification-body -t 1
 ```
 This will create data for a notification with heading as "notification-heading" and body as "notification-body".
 The notification will arrive after 1 minute.
 
 - Start the notifier:
 ```bash
-bnotify
+renotify
 ```
 
 - More with:
 ```bash
-bnotify -h
+renotify -h
 ```
 
 

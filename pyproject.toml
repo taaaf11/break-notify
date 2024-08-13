@@ -1,5 +1,5 @@
 [project]
-name = "break-notify"
+name = "renotify"
 description = "A tool to notify for breaks."
 readme = "README.md"
 version = "0.1.0"
@@ -12,4 +12,4 @@ dependencies = [
 
 
 [project.scripts]
-bnotify = "break_notify.main:runner"
+renotify = "renotify.main:runner"
